@@ -34,4 +34,5 @@ protontricks --no-runtime --background-wineserver -c "wine /home/racedev/git/win
 ## ToDo
  - This thing leaks more memory than my Grandma, i need to find a way to exit the child process gracefully so I can free memory
  - Support more sims/programs
+ - The third wrapper (shmwrapper3.c) is meant to allow a wine prefix to access a linux memory mapped file. The test I wrote for it works, however, when I've tried to use it in practice, e.g. with CrewChief, it does not seem to work.
 
