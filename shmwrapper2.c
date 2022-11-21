@@ -28,6 +28,16 @@
 #define MEM_FILE_LOCATION "acpmf_static"
 #endif
 
+#ifdef RF2TELEMETRY
+#include "simapi/rf2data.h"
+#define MEM_FILE_LOCATION "rFactor2SMMP_Telemetry"
+#endif
+
+#ifdef RF2SCORING
+#include "simapi/rf2data.h"
+#define MEM_FILE_LOCATION "rFactor2SMMP_Scoring"
+#endif
+
 #ifdef CREWCHIEF
 #include "simapi/crewchiefdata.h"
 #define MEM_FILE_LOCATION "acpmf_crewchief"
@@ -61,6 +71,14 @@ int main(int argc, char** argv) {
     ftruncate(fd, sizeof(struct SPageFileStatic));
 	addr = mmap(NULL, sizeof(struct SPageFileStatic), PROT_WRITE, MAP_SHARED, fd, 0);
 #endif
+#ifdef RF2TELEMETRY
+    ftruncate(fd, sizeof(struct rF2Telemetry));
+	addr = mmap(NULL, sizeof(struct rF2Telemetry), PROT_WRITE, MAP_SHARED, fd, 0);
+#endif
+#ifdef RF2SCORING
+    ftruncate(fd, sizeof(struct rF2VehicleScoring));
+	addr = mmap(NULL, sizeof(struct rF2VehicleScoring), PROT_WRITE, MAP_SHARED, fd, 0);
+#endif
 #ifdef CREWCHIEF
     ftruncate(fd, sizeof(struct SPageFileCrewChief));
 	addr = mmap(NULL, sizeof(struct SPageFileCrewChief), PROT_WRITE, MAP_SHARED, fd, 0);
@@ -92,6 +110,18 @@ int main(int argc, char** argv) {
     read(duplicated_stdin, b, sizeof(struct SPageFileStatic));
 	memcpy(addr, b, sizeof(struct SPageFileStatic));
 #endif    
+#ifdef RF2TELEMETRY
+    struct rF2Telemetry* b = malloc(sizeof(struct rF2Telemetry));
+    ftruncate(duplicated_stdin, sizeof(struct rF2Telemetry));
+    read(duplicated_stdin, b, sizeof(struct rF2Telemetry));
+	memcpy(addr, b, sizeof(struct rF2Telemetry));
+#endif
+#ifdef RF2SCORING
+    struct rF2VehicleScoring* b = malloc(sizeof(struct rF2VehicleScoring));
+    ftruncate(duplicated_stdin, sizeof(struct rF2VehicleScoring));
+    read(duplicated_stdin, b, sizeof(struct rF2VehicleScoring));
+	memcpy(addr, b, sizeof(struct rF2VehicleScoring));
+#endif
 #ifdef CREWCHIEF
     struct SPageFileCrewChief* b = malloc(sizeof(struct SPageFileCrewChief));
     ftruncate(duplicated_stdin, sizeof(struct SPageFileCrewChief));
@@ -123,6 +153,16 @@ int main(int argc, char** argv) {
         ftruncate(duplicated_stdin, sizeof(struct SPageFileStatic));
         read(duplicated_stdin, b, sizeof(struct SPageFileStatic));
 	    memcpy(addr, b, sizeof(struct SPageFileStatic));
+#endif
+#ifdef RF2TELEMETRY
+        ftruncate(duplicated_stdin, sizeof(struct rF2Telemetry));
+        read(duplicated_stdin, b, sizeof(struct rF2Telemetry));
+    	memcpy(addr, b, sizeof(struct rF2Telemetry));
+#endif
+#ifdef RF2SCORING
+        ftruncate(duplicated_stdin, sizeof(struct rF2VehicleScoring));
+        read(duplicated_stdin, b, sizeof(struct rF2VehicleScoring));
+    	memcpy(addr, b, sizeof(struct rF2VehicleScoring));
 #endif
 #ifdef CREWCHIEF
         ftruncate(duplicated_stdin, sizeof(struct SPageFileCrewChief));

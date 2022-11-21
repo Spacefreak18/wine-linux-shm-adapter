@@ -20,6 +20,14 @@ typedef struct SPageFileGraphics SharedMemory;
 #include "simapi/acdata.h"
 typedef struct SPageFileStatic SharedMemory;
 #endif
+#ifdef RF2TELEMETRY
+#include "simapi/rf2data.h"
+typedef struct rF2Telemetry SharedMemory;
+#endif
+#ifdef RF2SCORING
+#include "simapi/rf2data.h"
+typedef struct rF2VehicleScoring SharedMemory;
+#endif
 #ifdef CREWCHIEF
 #include "simapi/crewchiefdata.h"
 typedef struct SPageFileCrewChief SharedMemory;
@@ -45,13 +53,47 @@ int main(int argc, char** argv) {
         access_mode++;
     }
 
+    //maph = OpenFileMapping(access, 1, TEXT(argv[1]));
     maph = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, access, 0, sizeof(SharedMemory), TEXT(argv[1]));
     
     if (maph == NULL) {
         fprintf(stderr, "failed to open mapping %s: %s\n", argv[1], strerror(GetLastError()));
         return 1;
     }
-    
+ 
+
+    /*
+    unsigned char* mapfb;
+    mapfb = (unsigned char*)MapViewOfFile(maph, FILE_MAP_READ, 0, 0, sizeof(SharedMemory));
+    SharedMemory* b = malloc(sizeof(SharedMemory));
+    b = (SharedMemory*)mapfb;
+
+    fprintf(stderr, "buf contains: %d\n", b->mNumVehicles);
+    fprintf(stderr, "buf contains: %d\n", b->mVehicles[0].mLapNumber);
+    fprintf(stderr, "buf contains: %lf\n", b->mVehicles[0].mLocalVel.x);
+    fprintf(stderr, "buf contains: %lf\n", b->mVehicles[0].mLocalVel.y);
+    fprintf(stderr, "buf contains: %lf\n", b->mVehicles[0].mLocalVel.z);
+    fprintf(stderr, "buf contains: %d\n", b->mVehicles[0].mGear);
+    fprintf(stderr, "buf contains: %lf\n", b->mVehicles[0].mEngineRPM);
+    FILE *outfile;
+     
+    outfile = fopen ("/home/racedev/telemetry.dat", "w");
+    if (outfile == NULL)
+    {
+        fprintf(stderr, "\nError opened file\n");
+        exit (1);
+    }
+ 
+    fwrite (b, sizeof(SharedMemory), 1, outfile);
+     
+    if(fwrite != 0)
+        printf("contents to file written successfully !\n");
+    else
+        printf("error writing file !\n");
+ 
+    fclose (outfile);
+    */
+
     SetStdHandle(STD_INPUT_HANDLE, maph);
     ZeroMemory(&si, sizeof(STARTUPINFO));
     si.cb = sizeof(STARTUPINFO);
