@@ -10,17 +10,17 @@
 
 
 #ifdef ACPHYSICS
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFilePhysics SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_PHYSICS_FILE;
 #endif
 #ifdef ACGRAPHICS
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFileGraphics SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_GRAPHICS_FILE;
 #endif
 #ifdef ACSTATIC
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFileStatic SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_STATIC_FILE;
 #endif
@@ -28,6 +28,11 @@ LPCSTR SHARED_MEM_FILE = AC_STATIC_FILE;
 #include "simapi/crewchiefdata.h"
 typedef struct SPageFileCrewChief SharedMemory;
 LPCSTR SHARED_MEM_FILE = CREWCHIEF_FILE;
+#endif
+#ifdef RF2TELEMETRY
+#include "simapi/include/rf2data.h"
+typedef struct rF2Telemetry SharedMemory;
+LPCSTR SHARED_MEM_FILE = "$rFactor2SMMP_Telemetry$";
 #endif
 
 int main(int argc, char** argv) {

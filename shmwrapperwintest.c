@@ -9,17 +9,17 @@
 #include <stdlib.h>
 
 #ifdef ACPHYSICS
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFilePhysics SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_PHYSICS_FILE;
 #endif
 #ifdef ACGRAPHICS
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFileGraphics SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_GRAPHICS_FILE;
 #endif
 #ifdef ACSTATIC
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFileStatic SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_STATIC_FILE;
 #endif

@@ -9,27 +9,27 @@
 #include <stdlib.h>
 
 #ifdef ACPHYSICS
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFilePhysics SharedMemory;
 #endif
 #ifdef ACGRAPHICS
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFileGraphics SharedMemory;
 #endif
 #ifdef ACSTATIC
-#include "simapi/acdata.h"
+#include "simapi/include/acdata.h"
 typedef struct SPageFileStatic SharedMemory;
 #endif
 #ifdef RF2TELEMETRY
-#include "simapi/rf2data.h"
+#include "simapi/include/rf2data.h"
 typedef struct rF2Telemetry SharedMemory;
 #endif
 #ifdef RF2SCORING
-#include "simapi/rf2data.h"
+#include "simapi/include/rf2data.h"
 typedef struct rF2VehicleScoring SharedMemory;
 #endif
 #ifdef CREWCHIEF
-#include "simapi/crewchiefdata.h"
+#include "simapi/include/crewchiefdata.h"
 typedef struct SPageFileCrewChief SharedMemory;
 #endif
 
