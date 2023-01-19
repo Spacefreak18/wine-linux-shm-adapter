@@ -14,11 +14,15 @@ typedef struct SPageFilePhysics SharedMemory;
 #endif
 #ifdef ACGRAPHICS
 #include "simapi/include/acdata.h"
-typedef struct SPageFileGraphics SharedMemory;
+typedef struct SPageFileGraphic SharedMemory;
 #endif
 #ifdef ACSTATIC
 #include "simapi/include/acdata.h"
 typedef struct SPageFileStatic SharedMemory;
+#endif
+#ifdef ACCREWCHIEF
+#include "simapi/include/acdata.h"
+typedef struct SPageFileCrewChief SharedMemory;
 #endif
 #ifdef RF2TELEMETRY
 #include "simapi/include/rf2data.h"
@@ -28,10 +32,7 @@ typedef struct rF2Telemetry SharedMemory;
 #include "simapi/include/rf2data.h"
 typedef struct rF2VehicleScoring SharedMemory;
 #endif
-#ifdef CREWCHIEF
-#include "simapi/include/crewchiefdata.h"
-typedef struct SPageFileCrewChief SharedMemory;
-#endif
+
 
 int main(int argc, char** argv) {
     char *access_mode;

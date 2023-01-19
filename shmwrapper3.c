@@ -24,8 +24,8 @@ LPCSTR SHARED_MEM_FILE = AC_GRAPHICS_FILE;
 typedef struct SPageFileStatic SharedMemory;
 LPCSTR SHARED_MEM_FILE = AC_STATIC_FILE;
 #endif
-#ifdef CREWCHIEF
-#include "simapi/crewchiefdata.h"
+#ifdef ACCREWCHIEF
+#include "simapi/include/acdata.h"
 typedef struct SPageFileCrewChief SharedMemory;
 LPCSTR SHARED_MEM_FILE = CREWCHIEF_FILE;
 #endif
