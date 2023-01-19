@@ -1,4 +1,4 @@
-all: assets/shmwrapper1.exe assets/shmwrapper2.bin #assets/shmwrapper3.exe assets/shmwrapperwintest.exe
+all: assets/shmwrapper1.exe assets/shmwrapper2.bin # assets/shmwrapper3.exe # assets/shmwrapperwintest.exe
 
 CC=gcc
 WINECC=i686-w64-mingw32-gcc
