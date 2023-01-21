@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
     ftruncate(fd, sizeof(struct SPageFileStatic));
 	addr = mmap(NULL, sizeof(struct SPageFileStatic), PROT_WRITE, MAP_SHARED, fd, 0);
 #endif
-#ifdef CREWCHIEF
+#ifdef ACCREWCHIEF
     ftruncate(fd, sizeof(struct SPageFileCrewChief));
 	addr = mmap(NULL, sizeof(struct SPageFileCrewChief), PROT_WRITE, MAP_SHARED, fd, 0);
 #endif
@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
     ftruncate(duplicated_stdin, sizeof(struct SPageFileStatic));
     read(duplicated_stdin, addr, sizeof(struct SPageFileStatic));
 #endif
-#ifdef CREWCHIEF
+#ifdef ACCREWCHIEF
     struct SPageFileCrewChief* b = malloc(sizeof(struct SPageFileCrewChief));
     ftruncate(duplicated_stdin, sizeof(struct SPageFileCrewChief));
     read(duplicated_stdin, addr, sizeof(struct SPageFileCrewChief));
@@ -149,7 +149,7 @@ int main(int argc, char** argv) {
         ftruncate(duplicated_stdin, sizeof(struct SPageFileStatic));
         read(duplicated_stdin, addr, sizeof(struct SPageFileStatic));
 #endif
-#ifdef CREWCHIEF
+#ifdef ACCREWCHIEF
         ftruncate(duplicated_stdin, sizeof(struct SPageFileCrewChief));
         read(duplicated_stdin, addr, sizeof(struct SPageFileCrewChief));
 #endif
